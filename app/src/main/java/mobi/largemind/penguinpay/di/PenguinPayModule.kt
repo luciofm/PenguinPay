@@ -4,8 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import mobi.largemind.penguinpay.repository.ExchangesRepository
-import mobi.largemind.penguinpay.repository.ExchangesService
+import mobi.largemind.penguinpay.repository.ExchangeRatessRepository
+import mobi.largemind.penguinpay.repository.ExchangeRateService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,12 +33,12 @@ class PenguinPayModule {
     }
 
     @Provides
-    fun provideExchangeRatesService(retrofit: Retrofit): ExchangesService {
-        return retrofit.create(ExchangesService::class.java)
+    fun provideExchangeRatesService(retrofit: Retrofit): ExchangeRateService {
+        return retrofit.create(ExchangeRateService::class.java)
     }
 
     @Provides
-    fun provideExchangesRepository(service: ExchangesService): ExchangesRepository {
-        return ExchangesRepository(service)
+    fun provideExchangesRepository(service: ExchangeRateService): ExchangeRatessRepository {
+        return ExchangeRatessRepository(service)
     }
 }

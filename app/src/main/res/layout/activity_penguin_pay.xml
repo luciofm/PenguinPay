@@ -35,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName|textCapWords"/>
+            android:inputType="phone"
+            android:digits="0,1,2,3,4,5,6,7,8,9"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,6 +93,7 @@
             android:id="@+id/send_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionSend"
             android:inputType="number"
             android:digits="0,1"/>
 
@@ -118,14 +120,25 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/exchanged_amount"
+        android:id="@+id/exchange_rate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/receive_input_layout"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Rate: 1 BIN = 539 KES"/>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/receive_input_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/send"
@@ -133,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/send"
-        app:layout_constraintTop_toBottomOf="@id/exchanged_amount"
+        app:layout_constraintTop_toBottomOf="@id/exchange_rate"
         app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

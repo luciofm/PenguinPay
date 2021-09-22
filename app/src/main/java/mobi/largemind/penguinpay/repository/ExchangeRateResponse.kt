@@ -4,10 +4,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ExchangeRate(
+data class ExchangeRateResponse(
     val rates: Rates
 )
 
+@JsonClass(generateAdapter = true)
 data class Rates(
     @Json(name = "KES")
     val kes: Float,
@@ -19,7 +20,7 @@ data class Rates(
     val ugx: Float
 )
 
-fun ExchangeRate.toMap(): Map<String, Float> = mapOf(
+fun ExchangeRateResponse.toMap(): Map<String, Float> = mapOf(
     "KES" to rates.kes,
     "NGN" to rates.ngn,
     "TZS" to rates.tzs,

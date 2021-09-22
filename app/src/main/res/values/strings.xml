@@ -6,4 +6,7 @@
     <string name="hint_phone_number">Phone number</string>
     <string name="send">Send</string>
     <string name="receive">Receive</string>
+
+    <string name="exchange_rate">Rate: 1 BIN = %1$s</string>
+    <string name="error_loading">Error loading rates, tap to retry</string>
 </resources>
