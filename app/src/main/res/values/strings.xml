@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PenguinPay</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_amount">Amount:</string>
+    <string name="hint_phone_number">Phone number</string>
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
+</resources>
