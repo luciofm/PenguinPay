@@ -32,21 +32,15 @@ class PenguinPayActivity : AppCompatActivity() {
         binding = ActivityPenguinPayBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupUi()
+        observeEvents()
+    }
+
+    private fun setupUi() {
         binding.countrySpinner.adapter = CountriesAdapter(this, countries)
 
         binding.sendInput.doOnTextChanged { text, _, _, _ ->
             viewModel.sendAmount.value = text.toString()
-        }
-
-        viewModel.receiveAmount.observe(this) { amount ->
-            binding.receiveInput.setText(amount)
-        }
-
-        viewModel.exchangeRate.observe(this) { rate ->
-            if (rate.isNotEmpty()) {
-                val text = getString(R.string.exchange_rate, rate)
-                binding.exchangeRate.text = text
-            }
         }
 
         binding.countrySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -68,14 +62,6 @@ class PenguinPayActivity : AppCompatActivity() {
 
         binding.countrySpinner.setSelection(0)
 
-        lifecycleScope.launch {
-            viewModel.uiState.collect { handleUiState(it) }
-        }
-
-        lifecycleScope.launch {
-            viewModel.sendState.collect { handleSendState(it) }
-        }
-
         binding.send.setOnClickListener {
             viewModel.sendMoney(
                 binding.phoneInput.text.toString(),
@@ -96,6 +82,27 @@ class PenguinPayActivity : AppCompatActivity() {
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
+        }
+    }
+
+    private fun observeEvents() {
+        viewModel.receiveAmount.observe(this) { amount ->
+            binding.receiveInput.setText(amount)
+        }
+
+        viewModel.exchangeRate.observe(this) { rate ->
+            if (rate.isNotEmpty()) {
+                val text = getString(R.string.exchange_rate, rate)
+                binding.exchangeRate.text = text
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.uiState.collect { handleUiState(it) }
+        }
+
+        lifecycleScope.launch {
+            viewModel.sendState.collect { handleSendState(it) }
         }
     }
 
